@@ -58,9 +58,12 @@ def test_optimize_very_long_prompt():
 def test_cli_basic_usage():
     """Test basic CLI usage."""
     runner = CliRunner()
-    result = runner.invoke(cli.optimize, ["--input", "test input", "--min-preserve-length", "50"])
+    result = runner.invoke(
+        cli.optimize, ["--input", "test input", "--min-preserve-length", "50"]
+    )
     assert result.exit_code == 0
     assert "test input" in result.output
+
 
 def test_cli_file_io(tmp_path):
     """Test CLI file input/output functionality."""
@@ -69,13 +72,13 @@ def test_cli_file_io(tmp_path):
     output_file = tmp_path / "output.txt"
     input_file.write_text("sample prompt text")
 
-    result = runner.invoke(cli.optimize, [
-        "--input", str(input_file),
-        "--output", str(output_file)
-    ])
+    result = runner.invoke(
+        cli.optimize, ["--input", str(input_file), "--output", str(output_file)]
+    )
 
     assert result.exit_code == 0
     assert output_file.read_text() == "sample prompt text"  # Current placeholder logic
+
 
 def test_cli_empty_input_handling():
     """Test CLI handles empty input appropriately."""
