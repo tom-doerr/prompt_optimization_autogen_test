@@ -5,12 +5,12 @@ from .core import PromptOptimizer
 
 
 @click.group()
-@click.version_option(version='0.1.1', message='%(version)s')
+@click.version_option(version="0.1.1", message="%(version)s")
 def cli():
     """Optimize LLM prompts by removing redundancy while preserving key information.
-    
+
     Examples:
-    
+
     \b
     $ prompt-optimizer optimize -i "Long prompt text..."
     $ prompt-optimizer optimize -i input.txt -o optimized.txt
@@ -18,8 +18,9 @@ def cli():
 
 
 @cli.command()
-@click.option("--input", "-i", required=True,
-              help="Input text content or path to a text file")
+@click.option(
+    "--input", "-i", required=True, help="Input text content or path to a text file"
+)
 @click.option("--output", "-o", help="Output file (default: stdout)")
 @click.option(
     "--min-preserve-length",
