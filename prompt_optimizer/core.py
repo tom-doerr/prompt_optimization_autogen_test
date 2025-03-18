@@ -1,7 +1,8 @@
+"""Core functionality for LLM prompt optimization."""
+# pylint: disable=too-few-public-methods
 class PromptOptimizer:
     """Optimizes LLM prompts by removing redundancy while preserving key information."""
-    
-    def __init__(self, min_preserve_length=50):
+    def __init__(self, min_preserve_length=50):  # pylint: disable=invalid-name
         """
         Args:
             min_preserve_length: Minimum length to maintain after optimization
