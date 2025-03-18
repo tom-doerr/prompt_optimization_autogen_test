@@ -9,6 +9,7 @@ from .core import PromptOptimizer
 def cli():
     """Command-line interface for prompt optimization"""
 
+
 @cli.command()
 @click.option("--input", "-i", required=True, help="Input text or file path")
 @click.option("--output", "-o", help="Output file (default: stdout)")
