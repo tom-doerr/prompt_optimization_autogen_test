@@ -59,7 +59,7 @@ def test_cli_basic_usage():
     """Test basic CLI usage."""
     runner = CliRunner()
     result = runner.invoke(
-        cli.optimize, ["--input", "test input", "--min-preserve-length", "50"]
+        cli, ["optimize", "--input", "test input", "--min-preserve-length", "50"]
     )
     assert result.exit_code == 0
     assert "test input" in result.output
@@ -73,7 +73,7 @@ def test_cli_file_io(tmp_path):
     input_file.write_text("sample prompt text")
 
     result = runner.invoke(
-        cli.optimize, ["--input", str(input_file), "--output", str(output_file)]
+        cli, ["optimize", "--input", str(input_file), "--output", str(output_file)]
     )
 
     assert result.exit_code == 0
@@ -83,7 +83,7 @@ def test_cli_file_io(tmp_path):
 def test_cli_help_display():
     """Test CLI help documentation displays correctly."""
     runner = CliRunner()
-    result = runner.invoke(cli.cli, ["--help"])
+    result = runner.invoke(cli, ["--help"])
     assert result.exit_code == 0
     assert (
         "Optimize a prompt using advanced redundancy removal techniques"
@@ -97,6 +97,6 @@ def test_cli_help_display():
 def test_cli_empty_input_handling():
     """Test CLI handles empty input appropriately."""
     runner = CliRunner()
-    result = runner.invoke(cli.optimize, ["--input", ""])
+    result = runner.invoke(cli, ["optimize", "--input", ""])
     assert result.exit_code == 1
     assert "Input prompt cannot be empty" in result.output  # Match actual error message
