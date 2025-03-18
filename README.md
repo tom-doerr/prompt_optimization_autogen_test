@@ -1,13 +1,15 @@
-# Prompt Optimizer
+# Prompt Optimizer Toolkit
 
-A tool for optimizing LLM prompts by removing redundancy while preserving critical information and technical terminology.
+A Python package for optimizing LLM prompts by removing redundancy while preserving critical technical information.
 
 ## Features
 
-- Removes redundant phrases and simplifies verbose expressions  
-- Maintains key technical terms and requirements
+- Redundancy removal while maintaining key requirements
 - Configurable minimum length preservation
+- File input/output support
 - CLI and Python API interfaces
+- Comprehensive test coverage
+- PEP8 compliant codebase
 
 ## Installation
 
@@ -18,15 +20,14 @@ pip install prompt-optimizer
 ## CLI Usage
 
 ```bash
-# Optimize a prompt from text
-prompt-optimizer optimize --input "Your prompt text" --min-preserve-length 100
+# Optimize text directly (50 word minimum length)
+prompt-optimizer --input "Your prompt text" --min-preserve-length 50
 
-# Optimize a prompt from file
-prompt-optimizer optimize --input input.txt --output optimized.txt
+# Process input file and save to output
+prompt-optimizer --input input.txt --output optimized.txt
 
-# Get help
+# Show full help
 prompt-optimizer --help
-prompt-optimizer optimize --help
 ```
 
 ## Python API
@@ -34,30 +35,34 @@ prompt-optimizer optimize --help
 ```python
 from prompt_optimizer import PromptOptimizer
 
-optimizer = PromptOptimizer(min_preserve_length=75)
+# Initialize with minimum length constraint
+optimizer = PromptOptimizer(min_preserve_length=50)
+
+# Optimize a prompt string
 optimized_prompt = optimizer.optimize("Your original prompt text")
 ```
 
-## Development
+## Development Setup
 
 ```bash
-# Install dev dependencies
-pip install -r requirements.txt
+# Install with dev dependencies
+pip install -e ".[dev]"
 
-# Run tests with coverage
-pytest --cov --cov-report=term-missing
+# Run all tests
+pytest tests/ --verbose --cov
 
 # Lint code
-pylint prompt_optimizer tests
+pylint prompt_optimizer/ tests/
 ```
 
-## Contributing
+## Contributing Guidelines
 
-1. Fork the repository
-2. Create a feature branch
-3. Add tests for any changes
-4. Submit a pull request
+1. Fork the repository and create a feature branch
+2. Include tests for any new functionality
+3. Maintain 100% test coverage
+4. Update documentation for any changes
+5. Submit a pull request with detailed notes
 
 ## License
 
-MIT License - See [LICENSE](LICENSE) for details.
+MIT Licensed - See [LICENSE](LICENSE) for details.

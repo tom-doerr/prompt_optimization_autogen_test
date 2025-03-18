@@ -4,17 +4,8 @@ import click
 from .core import PromptOptimizer
 
 
-@click.group()
+@click.command()
 @click.version_option(message="%(version)s", package_name="prompt-optimizer")
-def cli():
-    """Command line interface for Prompt Optimizer.
-
-    Provides tools for optimizing LLM prompts through redundancy removal
-    while preserving critical information and technical terminology.
-    """
-
-
-@cli.command()
 @click.option("--input", "-i", required=True, help="Input prompt text or file path")
 @click.option("--output", "-o", help="Output file path (default: stdout)")
 @click.option(
@@ -22,9 +13,10 @@ def cli():
     "-m",
     type=int,
     default=50,
-    help="Minimum length to preserve after optimization",
+    show_default=True,
+    help="Minimum length to preserve after optimization"
 )
-def optimize(input, output, min_preserve_length):  # pylint: disable=redefined-builtin
+def cli(input, output, min_preserve_length):  # pylint: disable=redefined-builtin
     """Optimize a prompt using advanced redundancy removal techniques."""
     try:
         # Check if input is a file path or direct text
