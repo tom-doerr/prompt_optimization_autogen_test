@@ -18,7 +18,6 @@ def test_readme_format():
         "development": r"#+\s*development",
         "contributing": r"#+\s*contributing"
     }
-    
     for section, pattern in sections.items():
         assert re.search(pattern, readme, re.IGNORECASE), \
             f"Missing '{section}' section in README.md"
