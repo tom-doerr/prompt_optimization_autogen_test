@@ -8,7 +8,7 @@ from .core import PromptOptimizer
 @click.version_option(message="%(version)s", package_name="prompt-optimizer")
 def cli():
     """Command line interface for Prompt Optimizer.
-    
+
     Provides tools for optimizing LLM prompts through redundancy removal
     while preserving critical information and technical terminology.
     """
