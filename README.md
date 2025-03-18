@@ -1,15 +1,14 @@
-# Prompt Optimizer Toolkit
+# Prompt Optimizer
 
-A Python package for optimizing LLM prompts by removing redundancy while preserving critical technical information.
+A Python toolkit for optimizing LLM prompts by removing redundancy while preserving key information.
 
 ## Features
 
-- Redundancy removal while maintaining key requirements
-- Configurable minimum length preservation
+- Redundancy removal while maintaining technical terms
+- Configurable minimum length preservation (50+ words)
 - File input/output support
-- CLI and Python API interfaces
-- Comprehensive test coverage
-- PEP8 compliant codebase
+- Command-line interface (CLI)
+- Python API integration
 
 ## Installation
 
@@ -17,52 +16,55 @@ A Python package for optimizing LLM prompts by removing redundancy while preserv
 pip install prompt-optimizer
 ```
 
-## CLI Usage
+## Usage
+
+### Command-line Interface
 
 ```bash
-# Optimize text directly (50 word minimum length)
-prompt-optimizer --input "Your prompt text" --min-preserve-length 50
+# Optimize text with minimum 100 words preserved
+prompt-optimizer optimize --input "Your prompt text" --min-preserve-length 100
 
-# Process input file and save to output
-prompt-optimizer --input input.txt --output optimized.txt
+# Process file input and save to output file 
+prompt-optimizer optimize --input input.txt --output optimized.txt
 
-# Show full help
-prompt-optimizer --help
+# Show help for optimize command
+prompt-optimizer optimize --help
 ```
 
-## Python API
+### Python API
 
 ```python
 from prompt_optimizer import PromptOptimizer
 
-# Initialize with minimum length constraint
-optimizer = PromptOptimizer(min_preserve_length=50)
+# Initialize with custom length constraint
+optimizer = PromptOptimizer(min_preserve_length=75)
 
-# Optimize a prompt string
-optimized_prompt = optimizer.optimize("Your original prompt text")
+# Optimize prompt text
+original_prompt = "Your detailed instructions here..."
+optimized_prompt = optimizer.optimize(original_prompt)
 ```
 
-## Development Setup
+## Development
 
 ```bash
-# Install with dev dependencies
-pip install -e ".[dev]"
+# Install dependencies
+pip install -r requirements.txt
 
-# Run all tests
-pytest tests/ --verbose --cov
+# Run tests with coverage
+pytest --cov=prompt_optimizer tests/
 
-# Lint code
+# Lint codebase
 pylint prompt_optimizer/ tests/
 ```
 
-## Contributing Guidelines
+## Contributing
 
-1. Fork the repository and create a feature branch
-2. Include tests for any new functionality
-3. Maintain 100% test coverage
-4. Update documentation for any changes
-5. Submit a pull request with detailed notes
+1. Create an issue to discuss proposed changes
+2. Write tests for new features
+3. Ensure 100% test coverage
+4. Update documentation accordingly
+5. Submit pull request with descriptive title
 
 ## License
 
-MIT Licensed - See [LICENSE](LICENSE) for details.
+MIT - See [LICENSE](LICENSE) for full details.
