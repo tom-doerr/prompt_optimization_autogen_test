@@ -8,7 +8,6 @@ from .core import PromptOptimizer
 @click.version_option()
 def cli():
     """Command-line interface for prompt optimization"""
-    pass
 
 @cli.command()
 @click.option("--input", "-i", required=True, help="Input text or file path")
