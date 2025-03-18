@@ -14,7 +14,7 @@ from .core import PromptOptimizer
     type=int,
     default=50,
     show_default=True,
-    help="Minimum length to preserve after optimization"
+    help="Minimum length to preserve after optimization",
 )
 def cli(input, output, min_preserve_length):  # pylint: disable=redefined-builtin
     """Optimize a prompt using advanced redundancy removal techniques."""
