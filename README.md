@@ -59,3 +59,62 @@ pylint prompt_optimizer/
 4. Maintain 100% test coverage
 5. Update documentation for all changes
 6. Run linter and tests before submitting PR
+# Prompt Optimizer
+
+A toolkit for optimizing LLM prompts by removing redundancy while preserving key information.
+
+## Installation
+
+```bash
+pip install prompt-optimizer
+```
+
+## Usage
+
+### Command Line Interface
+
+Optimize a prompt from text:
+```bash
+prompt-optimizer optimize -i "Your long prompt text here..."
+```
+
+Optimize a text file:
+```bash
+prompt-optimizer optimize -i input.txt -o optimized.txt
+```
+
+### Python API
+
+```python
+from prompt_optimizer import PromptOptimizer
+
+optimizer = PromptOptimizer(min_preserve_length=50)
+optimized_prompt = optimizer.optimize("Your long prompt text...")
+```
+
+## Features
+
+- Redundancy removal
+- Length preservation controls 
+- File input/output support
+- CLI and Python API interfaces
+
+## Development
+
+To contribute:
+
+1. Clone repo & install dev dependencies:
+```bash
+git clone https://github.com/yourusername/prompt-optimizer.git
+cd prompt-optimizer
+pip install -e .[dev]
+```
+
+2. Run tests:
+```bash
+pytest
+```
+
+## Contributing
+
+Contributions welcome! Please open an issue first to discuss proposed changes.

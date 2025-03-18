@@ -83,7 +83,7 @@ def test_cli_file_io(tmp_path):
 def test_cli_help_display():
     """Test CLI help documentation displays correctly."""
     runner = CliRunner()
-    result = runner.invoke(cli, ["--help"])
+    result = runner.invoke(cli, ["optimize", "--help"])
     assert result.exit_code == 0
     assert (
         "Optimize a prompt using advanced redundancy removal techniques"

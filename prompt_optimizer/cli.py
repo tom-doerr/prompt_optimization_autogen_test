@@ -8,9 +8,14 @@ from .core import PromptOptimizer
 @click.version_option(version="0.1.1", message="%(version)s")
 def cli():
     """Optimize LLM prompts by removing redundancy while preserving key information.
-
+    
+    Features:
+    - Input text or file processing
+    - Output to console or file
+    - Configurable length preservation
+    
     Examples:
-
+    
     \b
     $ prompt-optimizer optimize -i "Long prompt text..."
     $ prompt-optimizer optimize -i input.txt -o optimized.txt
@@ -19,16 +24,23 @@ def cli():
 
 @cli.command()
 @click.option(
-    "--input", "-i", required=True, help="Input text content or path to a text file"
+    "--input", 
+    "-i", 
+    required=True,
+    help="Input text content or path to text file (required)"
 )
-@click.option("--output", "-o", help="Output file (default: stdout)")
+@click.option(
+    "--output",
+    "-o",
+    help="Output file path (optional, prints to console if omitted)"
+)
 @click.option(
     "--min-preserve-length",
     "-m",
     type=int,
     default=50,
     show_default=True,
-    help="Minimum preserved length (words)",
+    help="Minimum number of words to preserve [default: 50]"
 )
 def optimize(input, output, min_preserve_length):  # pylint: disable=redefined-builtin
     """Optimize a prompt using advanced redundancy removal techniques."""
