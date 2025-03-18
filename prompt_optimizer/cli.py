@@ -5,8 +5,7 @@ from .core import PromptOptimizer
 
 @click.group()
 def cli():
-    """Command line interface for Prompt Optimizer."""
-    pass
+    """Command line interface for Prompt Optimizer.""" 
 
 @cli.command()
 @click.option("--input", "-i", required=True, help="Input prompt text or file path")

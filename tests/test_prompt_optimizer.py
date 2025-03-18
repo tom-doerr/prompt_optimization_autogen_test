@@ -1,6 +1,8 @@
 """Unit tests for prompt optimization functionality."""
 
 import pytest
+from click.testing import CliRunner
+from prompt_optimizer import cli
 from prompt_optimizer.core import PromptOptimizer
 
 
@@ -66,12 +68,12 @@ def test_cli_file_io(tmp_path):
     input_file = tmp_path / "input.txt"
     output_file = tmp_path / "output.txt"
     input_file.write_text("sample prompt text")
-    
+
     result = runner.invoke(cli.optimize, [
         "--input", str(input_file),
         "--output", str(output_file)
     ])
-    
+
     assert result.exit_code == 0
     assert output_file.read_text() == "sample prompt text"  # Current placeholder logic
 
