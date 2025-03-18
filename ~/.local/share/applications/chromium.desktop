@@ -1,0 +1,25 @@
+[Desktop Entry]
+Version=1.0
+Name=Chromium Web Browser
+GenericName=Web Browser
+Comment=Access the Internet
+Exec=env __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia chromium --use-gl=desktop --ignore-gpu-blocklist --enable-features=VaapiVideoDecoder --enable-gpu-rasterization --enable-zero-copy --enable-accelerated-video-decode --enable-native-gpu-memory-buffers %U
+Terminal=false
+Icon=chromium
+Type=Application
+Categories=Network;WebBrowser;
+MimeType=text/html;text/xml;application/xhtml+xml;application/xml;application/rss+xml;application/rdf+xml;image/gif;image/jpeg;image/png;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;
+StartupNotify=true
+Actions=NewWindow;Incognito;TempProfile;
+
+[Desktop Action NewWindow]
+Name=Open a New Window
+Exec=env __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia chromium --use-gl=desktop --ignore-gpu-blocklist --enable-features=VaapiVideoDecoder --enable-gpu-rasterization --enable-zero-copy --enable-accelerated-video-decode --enable-native-gpu-memory-buffers
+
+[Desktop Action Incognito]
+Name=Open a New Window in Incognito Mode
+Exec=env __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia chromium --use-gl=desktop --ignore-gpu-blocklist --enable-features=VaapiVideoDecoder --enable-gpu-rasterization --enable-zero-copy --enable-accelerated-video-decode --enable-native-gpu-memory-buffers --incognito
+
+[Desktop Action TempProfile]
+Name=Open a New Window with a Temporary Profile
+Exec=env __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia chromium --use-gl=desktop --ignore-gpu-blocklist --enable-features=VaapiVideoDecoder --enable-gpu-rasterization --enable-zero-copy --enable-accelerated-video-decode --enable-native-gpu-memory-buffers --temp-profile
