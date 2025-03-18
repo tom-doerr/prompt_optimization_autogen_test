@@ -1,9 +1,8 @@
 [MASTER]
-ignore-patterns=(
-    ^requirements.*$
-    ^pyproject\.toml$
-    ^.pylintrc$
-    ^.git.*$
-    ^.venv.*$
+ignore-patterns=
+    ^requirements.*$,
+    ^pyproject\.toml$,
+    ^.pylintrc$,
+    ^.git.*$,
+    ^.venv.*$,
     ^__pycache__/.*$
-)

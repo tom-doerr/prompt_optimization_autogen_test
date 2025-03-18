@@ -4,6 +4,7 @@ from prompt_optimizer.core import PromptOptimizer
 
 @pytest.fixture(name="sample_prompt")
 def sample_prompt_fixture():
+    """Fixture providing a sample prompt for testing."""
     return """
     Please write a Python function that calculates factorial of a number. 
     The function should: 
@@ -40,6 +41,5 @@ def test_optimize_very_long_prompt():
     optimizer = PromptOptimizer()
     long_prompt = " ".join(["test"] * 1000)
     optimized = optimizer.optimize(long_prompt)
-    
     assert len(optimized) < len(long_prompt)
     assert "test" in optimized

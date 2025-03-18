@@ -8,7 +8,6 @@ class PromptOptimizer:
             min_preserve_length: Minimum length to maintain after optimization
         """
         self.min_preserve_length = min_preserve_length
-        
     def optimize(self, prompt: str) -> str:
         """
         Optimizes a given prompt by:
@@ -25,7 +24,6 @@ class PromptOptimizer:
         """
         if not prompt:
             raise ValueError("Input prompt cannot be empty")
-            
         # Current placeholder implementation - actual optimization logic TBD
         optimized = " ".join(prompt.split()[:self.min_preserve_length])
         
