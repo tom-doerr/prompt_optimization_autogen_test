@@ -18,7 +18,7 @@ def cli():
 
 
 @cli.command()
-@click.option("--input", "-i", required=True, 
+@click.option("--input", "-i", required=True,
               help="Input text content or path to a text file")
 @click.option("--output", "-o", help="Output file (default: stdout)")
 @click.option(
