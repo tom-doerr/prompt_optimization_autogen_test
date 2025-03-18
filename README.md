@@ -22,10 +22,10 @@ pip install prompt-optimizer
 
 ```bash
 # Optimize text with minimum 100 words preserved
-prompt-optimizer optimize --input "Your prompt text" --min-preserve-length 100
+prompt-optimizer optimize --input-text "Your prompt text" --min-preserve-length 100
 
 # Process file input and save to output file 
-prompt-optimizer optimize --input input.txt --output optimized.txt
+prompt-optimizer optimize --input-file input.txt --output optimized.txt
 
 # Show help for optimize command
 prompt-optimizer optimize --help
