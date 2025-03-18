@@ -1,21 +1,35 @@
 # Prompt Optimizer
 
-A toolkit for optimizing LLM prompts by removing redundancy while preserving key information.
+A tool for optimizing LLM prompts by removing redundancy while preserving key information.
 
 ## Features
 
-- Removes redundant phrases and verbose expressions
-- Maintains technical terms and key requirements
+- Redundancy removal for cleaner prompts
+- Preservation of technical terms and key requirements
 - Configurable minimum length preservation
-- Command line interface for easy integration
+- File input/output support
+- CLI interface for easy integration into workflows
 
 ## Installation
 
 ```bash
-pip install -r requirements.txt
+pip install prompt-optimizer
 ```
 
 ## Usage
+
+### Command Line Interface
+
+```bash
+# Optimize a prompt string
+prompt-optimizer optimize --input "Your prompt text here" --min-preserve-length 75
+
+# Process input file and save to output file 
+prompt-optimizer optimize --input input.txt --output optimized.txt
+
+# See help documentation
+prompt-optimizer --help
+```
 
 ### Python API
 
@@ -26,33 +40,18 @@ optimizer = PromptOptimizer(min_preserve_length=50)
 optimized_prompt = optimizer.optimize("Your original prompt text here")
 ```
 
-### Command Line Interface
+## Development
 
-Basic usage:
+Contributions are welcome! Please create an issue first to discuss proposed changes.
+
 ```bash
-python -m prompt_optimizer.cli optimize --input "Your prompt text" --output optimized.txt
+# Install development dependencies
+pip install -r requirements.txt
+
+# Run tests
+pytest tests/
 ```
 
-Process a file:
-```bash
-python -m prompt_optimizer.cli optimize -i input.txt -o output.txt
-```
+## License
 
-Pipe from stdin:
-```bash
-echo "Your prompt text" | python -m prompt_optimizer.cli optimize
-```
-
-## Options
-
-```
-Options:
-  -i, --input TEXT         Input prompt text or file path  [required]
-  -o, --output TEXT        Output file path (default: stdout)
-  -m, --min-preserve-length INTEGER  Minimum length to preserve [default: 50]
-  --help                   Show this message and exit.
-```
-
-## Contributing
-
-Contributions are welcome! Please open an issue or PR for any improvements.
+MIT License - See LICENSE file for details.

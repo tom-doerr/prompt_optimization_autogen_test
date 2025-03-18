@@ -80,9 +80,19 @@ def test_cli_file_io(tmp_path):
     assert output_file.read_text() == "sample prompt text"  # Current placeholder logic
 
 
+def test_cli_help_display():
+    """Test CLI help documentation displays correctly."""
+    runner = CliRunner()
+    result = runner.invoke(cli.cli, ["--help"])
+    assert result.exit_code == 0
+    assert "Optimize a prompt using advanced redundancy removal techniques" in result.output
+    assert "--input" in result.output
+    assert "--output" in result.output
+    assert "--min-preserve-length" in result.output
+
 def test_cli_empty_input_handling():
     """Test CLI handles empty input appropriately."""
     runner = CliRunner()
     result = runner.invoke(cli.optimize, ["--input", ""])
     assert result.exit_code == 1
-    assert "Error: Input cannot be empty" in result.output
+    assert "Input prompt cannot be empty" in result.output  # Match actual error message

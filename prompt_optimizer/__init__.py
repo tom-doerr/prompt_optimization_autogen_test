@@ -1,6 +1,12 @@
-"""Prompt optimization toolkit for LLM interactions."""
+"""Prompt optimization toolkit for LLM interactions.
+
+Provides:
+- PromptOptimizer class for core optimization logic
+- CLI interface for command-line usage
+- Configuration options for length preservation
+"""
 
 from .core import PromptOptimizer
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 __all__ = ["PromptOptimizer"]
