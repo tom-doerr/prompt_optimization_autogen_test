@@ -89,8 +89,7 @@ def test_cli_help_display():
         "Optimize a prompt using advanced redundancy removal techniques"
         in result.output
     )
-    assert "--input-text" in result.output
-    assert "--input-file" in result.output
+    assert "--input" in result.output
     assert "--output" in result.output
     assert "--min-preserve-length" in result.output
 
