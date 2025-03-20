@@ -104,13 +104,10 @@ def test_cli_file_io(tmp_path):
 
     assert result.exit_code == 0
     optimized_text = output_file.read_text()
-    assert len(optimized_text) < len(
-        input_file.read_text()
-    )  # Verify actual optimization
-    assert "sample prompt text" in optimized_text  # Current placeholder logic
-    pytest.xfail(
-        "Pending actual optimization implementation"
-    )  # Mark as expected to fail
+    original = input_file.read_text()
+    assert len(optimized_text) < len(original), "No optimization occurred"
+    assert "sample" in optimized_text, "Key content missing"
+    assert "prompt text" not in optimized_text, "Redundant content remains"
 
 
 def test_cli_help_display():
@@ -133,3 +130,9 @@ def test_cli_empty_input_handling():
     result = runner.invoke(cli, ["optimize", "--input", ""])
     assert result.exit_code == 1
     assert "Input prompt cannot be empty" in result.output  # Match actual error message
+def test_cli_version_display():
+    """Test CLI version display."""
+    runner = CliRunner()
+    result = runner.invoke(cli, ["--version"])
+    assert result.exit_code == 0
+    assert "0.1.1" in result.output

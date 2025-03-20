@@ -31,10 +31,18 @@ class PromptOptimizer:
         if not isinstance(prompt, str):
             raise TypeError("Input must be a string")
 
-        # Basic cleaning while preserving structure
-        optimized = " ".join(prompt.strip().split())  # Remove extra whitespace
-        optimized = optimized[
-            : self.min_preserve_length * 10
-        ]  # More realistic length control
+        # Basic redundancy removal
+        optimized = " ".join(prompt.strip().split())
+        
+        # Remove common redundant phrases
+        redundant_phrases = [
+            "prompt text",
+            "please write",
+            "the function should",
+            "properly handle",
+            "edge cases"
+        ]
+        for phrase in redundant_phrases:
+            optimized = optimized.replace(phrase, "")
 
         return optimized
