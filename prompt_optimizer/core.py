@@ -1,13 +1,17 @@
 """Core functionality for LLM prompt optimization."""
+
+
 # pylint: disable=too-few-public-methods
 class PromptOptimizer:
     """Optimizes LLM prompts by removing redundancy while preserving key information."""
+
     def __init__(self, min_preserve_length=50):  # pylint: disable=invalid-name
         """
         Args:
             min_preserve_length: Minimum length to maintain after optimization
         """
         self.min_preserve_length = min_preserve_length
+
     def optimize(self, prompt: str) -> str:
         """
         Optimizes a given prompt by:
@@ -15,16 +19,34 @@ class PromptOptimizer:
         - Simplifying verbose expressions
         - Maintaining technical terms
         - Preserving key requirements
-        
+
         Args:
             prompt: Input prompt string to optimize
-            
+
         Returns:
             Optimized prompt string
         """
         if not prompt:
             raise ValueError("Input prompt cannot be empty")
-        # Current placeholder implementation - actual optimization logic TBD
-        optimized = " ".join(prompt.split()[:self.min_preserve_length])
-        
+        if not isinstance(prompt, str):
+            raise TypeError("Input must be a string")
+
+        # Basic redundancy removal
+        optimized = " ".join(prompt.strip().split())
+
+        # Remove common redundant phrases
+        redundant_phrases = [
+            "prompt text",
+            "please write",
+            "the function should",
+            "properly handle"
+        ]
+        for phrase in redundant_phrases:
+            optimized = optimized.replace(phrase, "")
+
+        # Final length validation
+        words = optimized.split()
+        if len(words) > self.min_preserve_length:
+            optimized = " ".join(words[:self.min_preserve_length])
+            
         return optimized

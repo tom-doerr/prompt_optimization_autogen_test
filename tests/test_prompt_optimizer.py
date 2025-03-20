@@ -55,6 +55,32 @@ def test_optimize_very_long_prompt():
     assert "test" in optimized
 
 
+def test_optimize_preserves_markdown_and_code_blocks():
+    """Test that markdown and code blocks are preserved intact."""
+    optimizer = PromptOptimizer()
+    prompt = """
+    ## API Requirements
+    ```python
+    def factorial(n):
+        return 1 if n == 0 else n * factorial(n-1)
+    ```
+    """
+    optimized = optimizer.optimize(prompt)
+    assert "## API Requirements" in optimized
+    assert "```python" in optimized
+    assert "def factorial(n):" in optimized
+
+
+def test_optimize_handles_unicode_properly():
+    """Test that Unicode characters are preserved during optimization."""
+    optimizer = PromptOptimizer()
+    prompt = "Привет! こんにちは! 안녕하세요! 😊"
+    optimized = optimizer.optimize(prompt)
+    assert all(
+        char in optimized for char in ["Привет", "こんにちは", "안녕하세요", "😊"]
+    )
+
+
 def test_cli_basic_usage():
     """Test basic CLI usage."""
     runner = CliRunner()
@@ -77,7 +103,11 @@ def test_cli_file_io(tmp_path):
     )
 
     assert result.exit_code == 0
-    assert output_file.read_text() == "sample prompt text"  # Current placeholder logic
+    optimized_text = output_file.read_text()
+    original = input_file.read_text()
+    assert len(optimized_text) < len(original), "No optimization occurred"
+    assert "sample" in optimized_text, "Key content missing"
+    assert "prompt text" not in optimized_text, "Redundant content remains"
 
 
 def test_cli_help_display():
@@ -100,3 +130,9 @@ def test_cli_empty_input_handling():
     result = runner.invoke(cli, ["optimize", "--input", ""])
     assert result.exit_code == 1
     assert "Input prompt cannot be empty" in result.output  # Match actual error message
+def test_cli_version_display():
+    """Test CLI version display."""
+    runner = CliRunner()
+    result = runner.invoke(cli, ["--version"])
+    assert result.exit_code == 0
+    assert "0.1.1" in result.output
