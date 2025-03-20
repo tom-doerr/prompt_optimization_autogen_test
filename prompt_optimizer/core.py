@@ -33,14 +33,14 @@ class PromptOptimizer:
 
         # Basic redundancy removal
         optimized = " ".join(prompt.strip().split())
-        
+
         # Remove common redundant phrases
         redundant_phrases = [
             "prompt text",
             "please write",
             "the function should",
             "properly handle",
-            "edge cases"
+            "edge cases",
         ]
         for phrase in redundant_phrases:
             optimized = optimized.replace(phrase, "")
