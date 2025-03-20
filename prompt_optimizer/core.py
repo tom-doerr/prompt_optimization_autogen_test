@@ -30,9 +30,11 @@ class PromptOptimizer:
             raise ValueError("Input prompt cannot be empty")
         if not isinstance(prompt, str):
             raise TypeError("Input must be a string")
-            
+
         # Basic cleaning while preserving structure
         optimized = " ".join(prompt.strip().split())  # Remove extra whitespace
-        optimized = optimized[: self.min_preserve_length * 10]  # More realistic length control
+        optimized = optimized[
+            : self.min_preserve_length * 10
+        ]  # More realistic length control
 
         return optimized

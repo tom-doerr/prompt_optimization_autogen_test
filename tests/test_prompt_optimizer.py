@@ -76,7 +76,9 @@ def test_optimize_handles_unicode_properly():
     optimizer = PromptOptimizer()
     prompt = "Привет! こんにちは! 안녕하세요! 😊"
     optimized = optimizer.optimize(prompt)
-    assert all(char in optimized for char in ["Привет", "こんにちは", "안녕하세요", "😊"])
+    assert all(
+        char in optimized for char in ["Привет", "こんにちは", "안녕하세요", "😊"]
+    )
 
 
 def test_cli_basic_usage():
@@ -102,9 +104,13 @@ def test_cli_file_io(tmp_path):
 
     assert result.exit_code == 0
     optimized_text = output_file.read_text()
-    assert len(optimized_text) < len(input_file.read_text())  # Verify actual optimization
+    assert len(optimized_text) < len(
+        input_file.read_text()
+    )  # Verify actual optimization
     assert "sample prompt text" in optimized_text  # Current placeholder logic
-    pytest.xfail("Pending actual optimization implementation")  # Mark as expected to fail
+    pytest.xfail(
+        "Pending actual optimization implementation"
+    )  # Mark as expected to fail
 
 
 def test_cli_help_display():
