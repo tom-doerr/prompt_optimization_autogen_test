@@ -39,10 +39,14 @@ class PromptOptimizer:
             "prompt text",
             "please write",
             "the function should",
-            "properly handle",
-            "edge cases",
+            "properly handle"
         ]
         for phrase in redundant_phrases:
             optimized = optimized.replace(phrase, "")
 
+        # Final length validation
+        words = optimized.split()
+        if len(words) > self.min_preserve_length:
+            optimized = " ".join(words[:self.min_preserve_length])
+            
         return optimized
